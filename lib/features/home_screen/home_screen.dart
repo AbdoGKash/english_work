@@ -18,12 +18,11 @@ class _HomeScreenState extends State<HomeScreen> {
     _loadUserName(); // جلب الاسم عند بدء الصفحة
   }
 
-  // دالة لقراءة الاسم من SharedPreferences
   Future<void> _loadUserName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    String userName = prefs.getString('user_name') ?? '';
     setState(() {
-      _userName = prefs.getString('user_name') ??
-          "Guest"; // إذا لم يوجد اسم، استخدم "Guest"
+      _userName = userName;
     });
   }
 

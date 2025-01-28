@@ -17,7 +17,7 @@ class AppRouter {
         );
       case RoutersName.usernamepage:
         return MaterialPageRoute(
-          builder: (_) => UserNamePage(),
+          builder: (_) => const UserNamePage(),
         );
       default:
         return MaterialPageRoute(

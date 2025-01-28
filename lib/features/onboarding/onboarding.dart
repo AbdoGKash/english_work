@@ -13,20 +13,20 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
-  String _userName = ""; // لتخزين الاسم المستخدم
+  String _userName = "";
 
   @override
   void initState() {
     super.initState();
-    _loadUserName(); // جلب الاسم عند بدء الصفحة
+    _loadUserName();
   }
 
   // دالة لقراءة الاسم من SharedPreferences
   Future<void> _loadUserName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
+    String userName = prefs.getString('user_name') ?? '';
     setState(() {
-      _userName = prefs.getString('user_name') ??
-          "Guest"; // إذا لم يوجد اسم، استخدم "Guest"
+      _userName = userName;
     });
   }
 
@@ -67,10 +67,9 @@ class _OnboardingState extends State<Onboarding> {
                   ),
                 ),
                 onPressed: () {
-                  if (_userName.isEmpty) {
-                    Navigator.pushNamed(context, RoutersName.usernamepage);
-                  }
-                  Navigator.pushNamed(context, RoutersName.home);
+                  _userName == ''
+                      ? Navigator.pushNamed(context, RoutersName.usernamepage)
+                      : Navigator.pushNamed(context, RoutersName.home);
                 },
                 child: Text(
                   "Start learning",

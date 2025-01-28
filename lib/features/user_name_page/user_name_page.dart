@@ -13,10 +13,8 @@ class UserNamePage extends StatefulWidget {
 }
 
 class _UserNamePageState extends State<UserNamePage> {
-  final _nameController = TextEditingController(); // تحكم في حقل الإدخال
-  final String _savedName = ""; // لتخزين الاسم المحفوظ
+  final _nameController = TextEditingController();
 
-  // دالة لحفظ الاسم في SharedPreferences
   Future<void> _saveName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('user_name', _nameController.text); // حفظ الاسم
